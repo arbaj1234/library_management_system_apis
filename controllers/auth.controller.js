@@ -1,5 +1,3 @@
-
-
 import { catchAsyncError } from "../middlewares/catchAsyncError.js";
 import ErrorHandler, { errorMiddleware } from "../middlewares/errorMiddleware.js";
 import UserModel from "../models/user.model.js";
@@ -8,6 +6,8 @@ import crypto from 'crypto';
 import { sendVerificationCode } from "../utils/sendVerificationCode.js";
 import { sendEmail } from "../utils/sendEmail.js";
 import { generateForgotPasswordEmailTemplate } from "../utils/emailTemplate.js";
+import { sendToken } from "../utils/sendToken.js";
+
 
 
 export const registerUser = catchAsyncError(async (req, res, next) => {
@@ -106,6 +106,7 @@ export const verifyOtp = catchAsyncError(async (req, res, next) => {
         return next(new ErrorHandler("OTP Verification Failed", 500))
     }
 })
+
 
 
 export const loginUser = catchAsyncError(async (req, res, next) => {
